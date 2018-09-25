@@ -10,21 +10,21 @@ openslide_version_latest_major_minor=3.4
 openslide_version_latest_patch=1
 
 tarbal_url="https://github.com/jcupitt/libvips/releases/download/v$vips_version_full/vips-$vips_version_full.tar.gz"
-tarbal_url="https://github.com/jcupitt/libvips/archive/v8.5.1.tar.gz"
 
 install_libvips_from_source() {
   # Download tarball
   echo "Compiling libvips v$vips_version_full from source"
   curl -L -o vips-$vips_version_full.tar.gz $tarbal_url
+	cat vips-$vips_version_full.tar.gz
   tar zvxf vips-$vips_version_full.tar.gz
-  cd libvips-$vips_version_full
+  cd vips-$vips_version_full
 
   # Compile
   CXXFLAGS="-D_GLIBCXX_USE_CXX11_ABI=0" ./configure --disable-debug --disable-docs --disable-static --disable-introspection --disable-dependency-tracking --enable-cxx=yes --without-python --without-orc --without-fftw $1
   make
   make install
   cd ..
-  rm -rf libvips-$vips_version_latest_major_minor.$vips_version_latest_patch
+  rm -rf vips-$vips_version_latest_major_minor.$vips_version_latest_patch
   rm vips-$vips_version_latest_major_minor.$vips_version_latest_patch.tar.gz
   ldconfig
   echo "Installed libvips $(PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/usr/local/lib/pkgconfig:/usr/lib/pkgconfig pkg-config --modversion vips)"
