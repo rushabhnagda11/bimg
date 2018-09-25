@@ -13,10 +13,8 @@ tarbal_url="https://github.com/libvips/libvips/releases/download/v$vips_version_
 
 install_libvips_from_source() {
   # Download tarball
-	echo $tarbal_url
   echo "Compiling libvips v$vips_version_full from source"
   curl -L -o vips-$vips_version_full.tar.gz $tarbal_url
-	cat vips-$vips_version_full.tar.gz
   tar zvxf vips-$vips_version_full.tar.gz
   cd vips-$vips_version_full
 
